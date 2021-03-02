@@ -64,7 +64,9 @@ public class Alumno extends Persona {
     
     public String boletinNotas(String curso, int evaluacion) {
     StringBuilder sb = new StringBuilder("Boletín de Notas");
-        for (Object object : col) {
+        for (String valor : tmAsignaturasAlumno.keySet()) {
+            
+            
             
         }
     
