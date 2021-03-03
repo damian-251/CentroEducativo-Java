@@ -36,7 +36,7 @@ public class Alumno extends Persona {
         System.out.println("Asignaturas matriculadas ");
         String repetir;
         String asignatura;
-        
+
         do {
             do {
                 System.out.print("Código asignatura: ");
@@ -45,11 +45,11 @@ public class Alumno extends Persona {
                     System.out.println("La asignatura no es correcta");
                 }
             } while (comprobarAsignatura(asignatura) == false);
-            Notas n = new Notas ();
+            Notas n = new Notas();
             tmAsignaturasAlumno.put(asignatura, n);
             System.out.print("¿Desea añadir más asignaturas? S=Sí Otro = No: ");
             repetir = sc.nextLine();
-        } while (repetir.equalsIgnoreCase("s") == true); 
+        } while (repetir.equalsIgnoreCase("s") == true);
 
     }
 
@@ -66,7 +66,7 @@ public class Alumno extends Persona {
     public String boletinNotas(String curso, int evaluacion) {
         StringBuilder sb = new StringBuilder("Boletín de Notas");
         for (String valor : tmAsignaturasAlumno.keySet()) {
-            
+
             sb.append(valor);
             sb.append(": ");
             sb.append(tmAsignaturasAlumno.get(valor).getNotas(evaluacion));
@@ -82,6 +82,7 @@ public class Alumno extends Persona {
     public boolean comprobarAsignatura(String asignatura) {
 
         return CentroEducativo.tmASIGNA.containsKey(asignatura);
+        
 
     }
 
@@ -99,6 +100,24 @@ public class Alumno extends Persona {
 
     public void setTmAsignaturasAlumno(TreeMap<String, Notas> tmAsignaturasAlumno) {
         this.tmAsignaturasAlumno = tmAsignaturasAlumno;
+    }
+
+    public class Notas {
+
+        public int notas[];
+
+        Notas() {
+            notas = new int[5];
+        }
+
+        public int getNotas(int evaluacion) {
+            return notas[evaluacion - 1];
+        }
+
+        public void setNotas(int evaluacion, int nota) {
+            this.notas[evaluacion - 1] = nota;
+        }
+
     }
 
 }
