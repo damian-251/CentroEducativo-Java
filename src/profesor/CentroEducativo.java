@@ -208,7 +208,7 @@ public class CentroEducativo {
 
                                                     correcto = true;
                                                     throw new Exception("El profesor introducido no existe");
-
+                                                    
                                                 } else if (lista.get(ape + " " + nom) instanceof Alumno) {
                                                     correcto = true;
                                                     throw new Exception("Has seleccionada un alumno");

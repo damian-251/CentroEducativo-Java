@@ -6,7 +6,7 @@ import java.util.TreeMap;
 public class Alumno extends Persona {
 
     private String curso;//comprobar su existencia en Treemaps tmCursos
-    private TreeMap<String, Notas> tmAsignaturasAlumno;
+    private TreeMap<String, Notas> tmAsignaturasAlumno = new TreeMap<>();
 
     public Alumno(String curso, String nombre, String apellidos, String calle,
             String codigoPostal, String ciudad, String dni, String fechaNacimiento) {
@@ -50,6 +50,13 @@ public class Alumno extends Persona {
             System.out.print("¿Desea añadir más asignaturas? S=Sí Otro = No: ");
             repetir = sc.nextLine();
         } while (repetir.equalsIgnoreCase("s") == true);
+        
+        /* xception in thread "main" java.lang.NullPointerException:
+        Cannot invoke "java.util.TreeMap.put(Object, Object)" because 
+        "this.tmAsignaturasAlumno" is null
+	at profesor.Alumno.pideDatos(Alumno.java:49)
+	at profesor.CentroEducativo.main(CentroEducativo.java:118) 
+        */
 
     }
 
@@ -108,6 +115,7 @@ public class Alumno extends Persona {
 
         Notas() {
             notas = new int[5];
+            //notas = new int[]{0,0,0,0,0};
         }
 
         public int getNotas(int evaluacion) {

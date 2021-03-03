@@ -11,7 +11,6 @@ public class Cuenta {
         
         /*IBAN Validos
         ES57 2100 4231 7146 5465 5151
-        ES81 0081 1153 0146 5465 5151
         ES61 0049 1111 8154 5365 5151
         
         https://www.gabilos.com/textocalculadoradccuenta.htm
