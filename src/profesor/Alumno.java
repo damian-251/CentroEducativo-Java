@@ -36,7 +36,7 @@ public class Alumno extends Persona {
         System.out.println("Asignaturas matriculadas ");
         String repetir;
         String asignatura;
-        /*
+        
         do {
             do {
                 System.out.print("Código asignatura: ");
@@ -45,21 +45,11 @@ public class Alumno extends Persona {
                     System.out.println("La asignatura no es correcta");
                 }
             } while (comprobarAsignatura(asignatura) == false);
-
-            tmAsignaturasAlumno.put(asignatura, new Notas());
+            Notas n = new Notas ();
+            tmAsignaturasAlumno.put(asignatura, n);
             System.out.print("¿Desea añadir más asignaturas? S=Sí Otro = No: ");
             repetir = sc.nextLine();
-        } while (repetir.equalsIgnoreCase("s") == true); */
-        
-        System.out.print("Código asignatura: ");
-                asignatura = sc.nextLine();
-                if (comprobarAsignatura(asignatura) == false) {
-                    System.out.println("La asignatura no es correcta");
-                }else {
-
-            tmAsignaturasAlumno.put(asignatura, new Notas());}
-
-        
+        } while (repetir.equalsIgnoreCase("s") == true); 
 
     }
 
@@ -72,17 +62,17 @@ public class Alumno extends Persona {
         return sb.toString();
 
     }
-    
+
     public String boletinNotas(String curso, int evaluacion) {
-    StringBuilder sb = new StringBuilder("Boletín de Notas");
+        StringBuilder sb = new StringBuilder("Boletín de Notas");
         for (String valor : tmAsignaturasAlumno.keySet()) {
             
-            tmAsignaturasAlumno.get(valor); //Objeto nota
-            
-            
-            
+            sb.append(valor);
+            sb.append(": ");
+            sb.append(tmAsignaturasAlumno.get(valor).getNotas(evaluacion));
+
         }
-        return "";
+        return sb.toString();
     }
 
     public boolean comprobarCurso() {
