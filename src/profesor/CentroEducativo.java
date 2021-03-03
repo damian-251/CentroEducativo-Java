@@ -206,11 +206,9 @@ public class CentroEducativo {
                                                 String ape = sc.nextLine();
                                                 if (lista.containsKey(ape + " " + nom) == false) {
 
-                                                    correcto = true;
                                                     throw new Exception("El profesor introducido no existe");
                                                     
                                                 } else if (lista.get(ape + " " + nom) instanceof Alumno) {
-                                                    correcto = true;
                                                     throw new Exception("Has seleccionada un alumno");
                                                 } else {
 
@@ -221,6 +219,7 @@ public class CentroEducativo {
                                             } catch (Exception e) {
                                                 System.out.println(e.getMessage());
                                                 correcto = false;
+                                                break;
                                             }
                                         } while (!correcto);
 
