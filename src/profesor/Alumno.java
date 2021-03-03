@@ -66,12 +66,12 @@ public class Alumno extends Persona {
     StringBuilder sb = new StringBuilder("Boletín de Notas");
         for (String valor : tmAsignaturasAlumno.keySet()) {
             
+            tmAsignaturasAlumno.get(valor);
+            tmAsignaturasAlumno.keySet();
             
             
         }
-    
-        System.out.println(tmAsignaturasAlumno);
-    return "";
+        return "";
     }
 
     public boolean comprobarCurso() {
