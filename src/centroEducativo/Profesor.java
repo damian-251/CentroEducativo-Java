@@ -1,4 +1,4 @@
-package profesor;
+package centroEducativo;
 //No poner nada del array de Profesores en esta clase, sino en la clase principal
 
 import java.util.InputMismatchException;
@@ -19,8 +19,8 @@ public class Profesor extends Persona {
         super();
     }
 
-    public Profesor(double sueldoBase, int[] horasExtra, double tipoIRPF,
-            String cuentaIBAN, TreeMap<String, String> tmAsignaturas,
+    public Profesor(double sueldoBase, double tipoIRPF,
+            String cuentaIBAN,
             String nombre, String apellidos, String calle, String codigoPostal,
             String ciudad, String dni, String fechaNacimiento) {
 
@@ -137,7 +137,6 @@ public class Profesor extends Persona {
     public void imprimeAsignaturas() {
 
         System.out.println(tmAsignaturas.values());
-        System.out.println(tmAsignaturas.keySet());
 
         //Imprime las asignaturas impartidas por el profesor
     }

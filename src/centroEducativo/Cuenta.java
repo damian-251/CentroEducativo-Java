@@ -1,4 +1,4 @@
-package profesor;
+package centroEducativo;
 
 import java.math.BigInteger;
 import java.util.InputMismatchException;

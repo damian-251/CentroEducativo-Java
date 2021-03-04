@@ -1,4 +1,4 @@
-package profesor;
+package centroEducativo;
 
 /* 
 Tareas pendientes:
@@ -56,6 +56,108 @@ public class CentroEducativo {
         CentroEducativo.setCurso(curso);
         System.out.println();
 
+        //--------------------------------------------------------------------------------------------------------------------------------
+        // D A T O S    I N I C I A L E S   P A R A   P R U E B A S///////////////////////////////////
+        Profesor profe = new Profesor(1500.0, 10.0, "ES2400811152680006077615", "Luis", "Rodriguez Parla", "calle1",
+                "03203", "Elche", "11111111H", "12/12/1980");
+        String key = profe.getApellidos() + " " + profe.getNombre();//la clave para el TreeMaps
+        lista.put(key, profe);
+        profe = new Profesor(1600.0, 10.0, "ES2400811152680006077615", "Ramiro", "Gutierrez Pascual", "calle3",
+                "03204", "Elche", "22222222J", "10/10/1985");
+        key = profe.getApellidos() + " " + profe.getNombre();//la clave para el TreeMaps
+        lista.put(key, profe);
+        profe = new Profesor(1800.0, 10.0, "ES2400811152680006077615", "Julian", "Herrero Pertusa", "calle2",
+                "03204", "Elche", "33333333P", "10/07/1979");
+        key = profe.getApellidos() + " " + profe.getNombre();//la clave para el TreeMaps
+        lista.put(key, profe);
+        profe = new Profesor(1600.0, 10.0, "ES2400811152680006077615", "Marta", "Valero Cuenca",
+                "avda Santapola, 12", "03203", "Elche", "21309422Z", "03/06/1970");
+        key = profe.getApellidos() + " " + profe.getNombre();//la clave para el TreeMaps
+        lista.put(key, profe);
+
+        // Alumno(String curso, String nombre, String apellidos, String calle, String codigoPostal, String ciudad, 
+//                 String dni, String fechaNacimiento) 
+        Alumno alum = new Alumno("1S", "Manuela", "Fuentes Gil", "avda Alicante, 26", "03203", "Elche",
+                "21309422Z", "03/06/2000");
+        TreeMap<String, Notas> tmAsignaturasAlumno = new TreeMap<String, Notas>();
+        Notas notas = new Notas();
+        tmAsignaturasAlumno.put("1SPROGRAM", new Notas());
+        tmAsignaturasAlumno.put("1SENTORNOS", new Notas());
+        tmAsignaturasAlumno.put("1SLENGMAR", new Notas());
+        tmAsignaturasAlumno.put("1SFOL", new Notas());
+        tmAsignaturasAlumno.put("1SINGLES", new Notas());
+        alum.setTmAsignaturasAlumno(tmAsignaturasAlumno);
+        key = alum.getApellidos() + " " + alum.getNombre();//la clave para el TreeMaps
+        lista.put(key, alum);
+
+        alum = new Alumno("1S", "Antonio", "Serrano Gil", "Hospital, 24", "03203", "Elche",
+                "21309422Z", "03/06/2001");
+        tmAsignaturasAlumno = new TreeMap<String, Notas>();
+        notas = new Notas();
+        tmAsignaturasAlumno.put("1SPROGRAM", new Notas());
+        tmAsignaturasAlumno.put("1SENTORNOS", new Notas());
+        tmAsignaturasAlumno.put("1SLENGMAR", new Notas());
+        tmAsignaturasAlumno.put("1SFOL", new Notas());
+        tmAsignaturasAlumno.put("1SINGLES", new Notas());
+        alum.setTmAsignaturasAlumno(tmAsignaturasAlumno);
+        key = alum.getApellidos() + " " + alum.getNombre();//la clave para el TreeMaps
+        lista.put(key, alum);
+
+        alum = new Alumno("1S", "Antonio", "Grande Ruizm", "Hospital, 22", "03203", "Elche",
+                "21309422Z", "03/05/1999");
+        tmAsignaturasAlumno = new TreeMap<String, Notas>();
+        notas = new Notas();
+        tmAsignaturasAlumno.put("1SPROGRAM", new Notas());
+        tmAsignaturasAlumno.put("1SENTORNOS", new Notas());
+        tmAsignaturasAlumno.put("1SLENGMAR", new Notas());
+        tmAsignaturasAlumno.put("1SFOL", new Notas());
+        tmAsignaturasAlumno.put("1SINGLES", new Notas());
+        alum.setTmAsignaturasAlumno(tmAsignaturasAlumno);
+        key = alum.getApellidos() + ", " + alum.getNombre();//la clave para el TreeMaps
+        lista.put(key, alum);
+
+        alum = new Alumno("2S", "Ana", "Ruiz Ruiz", "Plza Mayor, 2", "03203", "Elche",
+                "21309422Z", "03/05/1999");
+        tmAsignaturasAlumno = new TreeMap<String, Notas>();
+        notas = new Notas();
+        tmAsignaturasAlumno.put("1SPROGRAM", new Notas());
+        tmAsignaturasAlumno.put("2SENTORCLI", new Notas());
+        tmAsignaturasAlumno.put("2SENTORSER", new Notas());
+        tmAsignaturasAlumno.put("2SFOL", new Notas());
+        tmAsignaturasAlumno.put("2SINGLES", new Notas());
+        alum.setTmAsignaturasAlumno(tmAsignaturasAlumno);
+        key = alum.getApellidos() + " " + alum.getNombre();//la clave para el TreeMaps
+        lista.put(key, alum);
+
+        alum = new Alumno("1W", "Luis", "Tormo Pascual", "Navas, 22", "03203", "Elche",
+                "21309422Z", "13/10/2000");
+        tmAsignaturasAlumno = new TreeMap<String, Notas>();
+        notas = new Notas();
+        tmAsignaturasAlumno.put("1WPROGRAM", new Notas());
+        tmAsignaturasAlumno.put("1WENTORNOS", new Notas());
+        tmAsignaturasAlumno.put("1WLENGMAR", new Notas());
+        tmAsignaturasAlumno.put("1WFOL", new Notas());
+        tmAsignaturasAlumno.put("1WINGLES", new Notas());
+        alum.setTmAsignaturasAlumno(tmAsignaturasAlumno);
+        key = alum.getApellidos() + " " + alum.getNombre();//la clave para el TreeMaps
+        lista.put(key, alum);
+
+        alum = new Alumno("1W", "Luisa", "Miralles Ruiz", "Romerales, 22", "03203", "Elche",
+                "21309422Z", "06/03/2001");
+        key = alum.getApellidos() + " " + alum.getNombre();//la clave para el TreeMaps
+        notas = new Notas();
+        tmAsignaturasAlumno.put("1WPROGRAM", new Notas());
+        tmAsignaturasAlumno.put("1WENTORNOS", new Notas());
+        tmAsignaturasAlumno.put("1WLENGMAR", new Notas());
+        tmAsignaturasAlumno.put("1WFOL", new Notas());
+        tmAsignaturasAlumno.put("1WINGLES", new Notas());
+        alum.setTmAsignaturasAlumno(tmAsignaturasAlumno);
+        lista.put(key, alum);
+        tmAsignaturasAlumno = new TreeMap<String, Notas>();
+        String nombreEvalua[] = {"Primera Evaluacion", "Segunda Evaluacion", "Tercera evaluacion",
+            "Evaluacion ordinaria", "Evaluacion extraordinaria"};
+
+//-----------------------------------------------------------------------------------------------------------------        
         //asignar el atributo estático pagoPorHoraExtra FILTRAMOS QUE SEA DOUBLE Y ADMITIR ". o ,"
         boolean correcto = false;
 
@@ -169,7 +271,7 @@ public class CentroEducativo {
                                 }
 
                                 break;
-                                
+
                             case 3: //CONSULTA DE DATOS PERSONALES DE UN ALUMNO
                                 do {
                                     try {
@@ -195,55 +297,107 @@ public class CentroEducativo {
                                 } while (repetir.equalsIgnoreCase("s") == true);
 
                                 break;
-                                
+
                             case 4: //INTRODUCIR NOTAS DE UNA ASIGNATURA Y EVALUCACIÓN A TODOS LOS MATRICULADOS
-                                
+
                                 System.out.print("Seleccione la asignatura deseada: ");
                                 String asignatura = sc.nextLine();
+
                                 System.out.print("Seleccione la evaluación: ");
                                 int evaluacion = sc.nextInt();
                                 sc.nextLine();
-                                
-                                System.out.println("Introduzca las notas: ");
-                                
-                                for (Persona valor : lista.values()) {
-                                    
-                                    System.out.print(valor.getApellidos() + ", "
-                                            + valor.getNombre() + ": ");
-                                    int nota = sc.nextInt(); sc.nextLine();
-                                    
 
-                                    if (valor instanceof Alumno) {
-                                        
+                                System.out.println("Introduzca las notas: ");
+
+                                for (Persona valor : lista.values()) {
+
+                                    if (valor instanceof Alumno
+                                            && ((Alumno) valor).getTmAsignaturasAlumno().containsKey(asignatura)) {
+
+                                        System.out.print(valor.getApellidos() + ", "
+                                                + valor.getNombre() + ": ");
+                                        int nota = sc.nextInt();
+                                        sc.nextLine();
+
                                         ((Alumno) valor).setEvaluacion(asignatura, evaluacion, nota);
 
                                     }
-  
+
                                 }
 
                                 break;
+
                             case 5: //LISTADO DE ALUMNOS DE UN GRUPO. DATOS PERSONALES.
-                                System.out.println("Función no implementada");
-                                
+
+                                System.out.print("Seleccione un curso: ");
+                                String cursoAlumno = sc.nextLine();
+
+                                for (Persona valor : lista.values()) {
+
+                                    if (valor instanceof Alumno) {
+
+                                        if (((Alumno) valor).getCurso().equals(cursoAlumno)) {
+
+                                            System.out.println(valor.toString());
+                                        }
+                                    }
+                                }
 
                                 break;
+
                             case 6: //LISTADO DE LOS ALUMNOS MATRICULADOS EN UNA ASIGNATURA
-                                System.out.println("Función no implementada");
+
+                                System.out.print("Seleccione una asignatura: ");
+                                asignatura = sc.nextLine();
+
+                                for (Persona valor : lista.values()) {
+
+                                    if (valor instanceof Alumno) {
+
+                                        if (((Alumno) valor).getTmAsignaturasAlumno().containsKey(asignatura)) {
+
+                                            System.out.println(valor.toString());
+                                        }
+
+                                    }
+                                }
 
                                 break; //LISTADO DE BOLETINES DE NOTAS DE UNA EVALUACIÓN Y CURSO
+
                             case 7:
-                                
-                                System.out.print("Seleccione evaluación: ");
-                                evaluacion = sc.nextInt();
-                                sc.nextLine();
-                                System.out.print("Seleccione curso: ");
-                                String cursoAlumno = sc.nextLine();
-                                
-                                for (Persona valor : lista.values()) {
-                                    
-                                    System.out.print(((Alumno)valor).boletinNotas(cursoAlumno, evaluacion));
-                                }
-                                
+                                do {
+                                    correcto = false;
+                                    try {
+                                        System.out.print("Seleccione evaluación: ");
+                                        evaluacion = sc.nextInt();
+                                        sc.nextLine();
+                                        System.out.print("Seleccione curso: ");
+                                        cursoAlumno = sc.nextLine();
+                                        if (tmCC.containsKey(cursoAlumno) == false) {
+
+                                            throw new Exception("La asignatura no existe");
+
+                                        }
+
+                                        for (Persona valor : lista.values()) {
+
+                                            if (valor instanceof Alumno) {
+
+                                                if (((Alumno) valor).getCurso().equals(cursoAlumno)) {
+
+                                                    System.out.print(((Alumno) valor).boletinNotas(evaluacion));
+
+                                                }
+                                            }
+                                        }
+                                        correcto = true;
+
+                                    } catch (Exception e) {
+                                        System.out.println(e.getMessage());
+                                        correcto = false;
+                                    }
+                                } while (!correcto);
+
                                 break;
                             case 0: //VUELTA AL MENÚ PRINCIPAL
                                 salidaAlumno = true;
@@ -356,6 +510,7 @@ public class CentroEducativo {
                                 } while (repetir.equalsIgnoreCase("s") == true);
 
                                 break;
+
                             case 4: //INTRODUCIR HORAS EXTRAORDINARIAS DE UN MES
                                 int mes;
                                 int horas = 0;
@@ -384,6 +539,7 @@ public class CentroEducativo {
                                 } while (repetir.equalsIgnoreCase("s") == true);
 
                                 break;
+
                             case 5: //LISTADO DE PROFESORES. DATOS PERSONALES
 
                                 for (Persona valor : lista.values()) {
@@ -421,6 +577,7 @@ public class CentroEducativo {
                                     if (valor instanceof Profesor) {
 
                                         System.out.println(((Profesor) valor).imprimirNominas(mes - 1));
+                                        System.out.println("");
                                     }
 
                                 }
@@ -430,7 +587,7 @@ public class CentroEducativo {
                             case 8: //MANTENIMIENTO DE ASIGNATURAS IMPARTIDAS POR CADA PROFESOR
 
                                 System.out.println("Mantenimiento de asignaturas");
-                                System.out.println("Seleccione un profesor: ");
+                                System.out.println("Seleccione un profesor ");
                                 System.out.print("Nombre profesor: ");
                                 String nom = sc.nextLine();
                                 System.out.print("Apellidos profesor: ");

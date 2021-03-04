@@ -1,4 +1,4 @@
-package profesor;
+package centroEducativo;
 
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -51,12 +51,6 @@ public class Alumno extends Persona {
             repetir = sc.nextLine();
         } while (repetir.equalsIgnoreCase("s") == true);
 
-        /* xception in thread "main" java.lang.NullPointerException:
-        Cannot invoke "java.util.TreeMap.put(Object, Object)" because 
-        "this.tmAsignaturasAlumno" is null
-	at profesor.Alumno.pideDatos(Alumno.java:49)
-	at profesor.CentroEducativo.main(CentroEducativo.java:118) 
-         */
     }
 
     @Override
@@ -69,7 +63,7 @@ public class Alumno extends Persona {
 
     }
 
-    public String boletinNotas(String curso, int evaluacion) {
+    public String boletinNotas(int evaluacion) {
         StringBuilder sb = new StringBuilder("\nBoletín de Notas\n");
 
         sb.append(super.getApellidos());
@@ -77,7 +71,7 @@ public class Alumno extends Persona {
         sb.append(super.getNombre());
 
         for (String valor : tmAsignaturasAlumno.keySet()) {
-            
+
             sb.append("\n");
             sb.append(valor);
             sb.append(": ");
@@ -116,22 +110,10 @@ public class Alumno extends Persona {
 
     }
 
-    public class Notas {
-
-        public int notas[] = new int[5];
-
-        Notas() {
-            //notas = new int[]{0,0,0,0,0};
-        }
-
-        public int getNotas(int evaluacion) {
-            return notas[evaluacion - 1];
-        }
-
-        public void setNotas(int evaluacion, int nota) {
-            this.notas[evaluacion - 1] = nota;
-        }
-
+    public void setTmAsignaturasAlumno(TreeMap<String, Notas> tmAsignaturasAlumno) {
+        this.tmAsignaturasAlumno = tmAsignaturasAlumno;
     }
+    
+    
 
 }
