@@ -128,25 +128,124 @@ public class CentroEducativo {
 
                                 break;
 
-                            case 2:
+                            case 2: //BAJA DE UN ALUMNO
+                                if (lista.isEmpty()) {
+                                    System.out.println("La lista está vacía");
+                                    break;
+                                } else {
+
+                                    do {
+
+                                        do {
+
+                                            try {
+                                                System.out.print("Nombre alumno: ");
+                                                String nom = sc.nextLine();
+                                                System.out.print("Apellidos alumno: ");
+                                                String ape = sc.nextLine();
+                                                if (lista.containsKey(ape + " " + nom) == false) {
+
+                                                    throw new Exception("El alumno introducido no existe");
+
+                                                } else if (lista.get(ape + " " + nom) instanceof Profesor) {
+                                                    throw new Exception("Has seleccionada un profesor");
+                                                } else {
+
+                                                    lista.remove(ape + " " + nom);
+                                                    correcto = true;
+                                                }
+
+                                            } catch (Exception e) {
+                                                System.out.println(e.getMessage());
+                                                correcto = false;
+                                                break;
+                                            }
+                                        } while (!correcto);
+
+                                        System.out.print("¿Desea continuar? s=Sí: ");
+                                        repetir = sc.nextLine();
+
+                                    } while (repetir.equalsIgnoreCase("s") == true);
+                                }
 
                                 break;
-                            case 3:
+                                
+                            case 3: //CONSULTA DE DATOS PERSONALES DE UN ALUMNO
+                                do {
+                                    try {
+                                        System.out.print("Nombre alumno: ");
+                                        String nom = sc.nextLine();
+                                        System.out.print("Apellidos alumno: ");
+                                        String ape = sc.nextLine();
+
+                                        if (lista.containsKey(ape + " " + nom) == false
+                                                || lista.get(ape + " " + nom) instanceof Profesor) {
+
+                                            throw new Exception("El alumno introducido no existe");
+
+                                        }
+                                        System.out.println(lista.get(ape + " " + nom).toString());
+
+                                    } catch (Exception e) {
+                                        System.out.println(e.getMessage());
+                                    }
+
+                                    System.out.print("¿Desea continuar? s=Sí: ");
+                                    repetir = sc.nextLine();
+                                } while (repetir.equalsIgnoreCase("s") == true);
 
                                 break;
-                            case 4:
+                                
+                            case 4: //INTRODUCIR NOTAS DE UNA ASIGNATURA Y EVALUCACIÓN A TODOS LOS MATRICULADOS
+                                
+                                System.out.print("Seleccione la asignatura deseada: ");
+                                String asignatura = sc.nextLine();
+                                System.out.print("Seleccione la evaluación: ");
+                                int evaluacion = sc.nextInt();
+                                sc.nextLine();
+                                
+                                System.out.println("Introduzca las notas: ");
+                                
+                                for (Persona valor : lista.values()) {
+                                    
+                                    System.out.print(valor.getApellidos() + ", "
+                                            + valor.getNombre() + ": ");
+                                    int nota = sc.nextInt(); sc.nextLine();
+                                    
+
+                                    if (valor instanceof Alumno) {
+                                        
+                                        ((Alumno) valor).setEvaluacion(asignatura, evaluacion, nota);
+
+                                    }
+  
+                                }
 
                                 break;
-                            case 5:
+                            case 5: //LISTADO DE ALUMNOS DE UN GRUPO. DATOS PERSONALES.
+                                System.out.println("Función no implementada");
+                                
 
                                 break;
-                            case 6:
+                            case 6: //LISTADO DE LOS ALUMNOS MATRICULADOS EN UNA ASIGNATURA
+                                System.out.println("Función no implementada");
 
-                                break;
+                                break; //LISTADO DE BOLETINES DE NOTAS DE UNA EVALUACIÓN Y CURSO
                             case 7:
-
+                                
+                                System.out.print("Seleccione evaluación: ");
+                                evaluacion = sc.nextInt();
+                                sc.nextLine();
+                                System.out.print("Seleccione curso: ");
+                                String cursoAlumno = sc.nextLine();
+                                
+                                for (Persona valor : lista.values()) {
+                                    
+                                    System.out.print(((Alumno)valor).boletinNotas(cursoAlumno, evaluacion));
+                                }
+                                
                                 break;
-                            case 0:
+                            case 0: //VUELTA AL MENÚ PRINCIPAL
                                 salidaAlumno = true;
                                 break;
                             default:
@@ -207,7 +306,7 @@ public class CentroEducativo {
                                                 if (lista.containsKey(ape + " " + nom) == false) {
 
                                                     throw new Exception("El profesor introducido no existe");
-                                                    
+
                                                 } else if (lista.get(ape + " " + nom) instanceof Alumno) {
                                                     throw new Exception("Has seleccionada un alumno");
                                                 } else {
@@ -382,11 +481,13 @@ public class CentroEducativo {
                     for (Persona valor : lista.values()) {
 
                         if (valor instanceof Profesor) {
-                            System.out.println("Profesor " + valor.getApellidos()
+                            System.out.println("(P) " + valor.getApellidos()
                                     + ", " + valor.getNombre());
 
                         } else if (valor instanceof Alumno) {
-                            System.out.println("Alumno " + valor.getApellidos()
+                            System.out.println("(A)" + " (" + ((Alumno) valor).getCurso()
+                                    + ") "
+                                    + valor.getApellidos()
                                     + ", " + valor.getNombre());
 
                         }

@@ -50,14 +50,13 @@ public class Alumno extends Persona {
             System.out.print("¿Desea añadir más asignaturas? S=Sí Otro = No: ");
             repetir = sc.nextLine();
         } while (repetir.equalsIgnoreCase("s") == true);
-        
+
         /* xception in thread "main" java.lang.NullPointerException:
         Cannot invoke "java.util.TreeMap.put(Object, Object)" because 
         "this.tmAsignaturasAlumno" is null
 	at profesor.Alumno.pideDatos(Alumno.java:49)
 	at profesor.CentroEducativo.main(CentroEducativo.java:118) 
-        */
-
+         */
     }
 
     @Override
@@ -71,14 +70,21 @@ public class Alumno extends Persona {
     }
 
     public String boletinNotas(String curso, int evaluacion) {
-        StringBuilder sb = new StringBuilder("Boletín de Notas");
-        for (String valor : tmAsignaturasAlumno.keySet()) {
+        StringBuilder sb = new StringBuilder("\nBoletín de Notas\n");
 
+        sb.append(super.getApellidos());
+        sb.append(", ");
+        sb.append(super.getNombre());
+
+        for (String valor : tmAsignaturasAlumno.keySet()) {
+            
+            sb.append("\n");
             sb.append(valor);
             sb.append(": ");
             sb.append(tmAsignaturasAlumno.get(valor).getNotas(evaluacion));
 
         }
+        sb.append("\n");
         return sb.toString();
     }
 
@@ -89,7 +95,6 @@ public class Alumno extends Persona {
     public boolean comprobarAsignatura(String asignatura) {
 
         return CentroEducativo.tmASIGNA.containsKey(asignatura);
-        
 
     }
 
@@ -105,16 +110,17 @@ public class Alumno extends Persona {
         return tmAsignaturasAlumno;
     }
 
-    public void setTmAsignaturasAlumno(TreeMap<String, Notas> tmAsignaturasAlumno) {
-        this.tmAsignaturasAlumno = tmAsignaturasAlumno;
+    public void setEvaluacion(String asignatura, int evaluacion, int nota) {
+
+        tmAsignaturasAlumno.get(asignatura).setNotas(evaluacion, nota);
+
     }
 
     public class Notas {
 
-        public int notas[];
+        public int notas[] = new int[5];
 
         Notas() {
-            notas = new int[5];
             //notas = new int[]{0,0,0,0,0};
         }
 
