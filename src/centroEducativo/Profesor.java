@@ -1,5 +1,4 @@
 package centroEducativo;
-//No poner nada del array de Profesores en esta clase, sino en la clase principal
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -28,10 +27,8 @@ public class Profesor extends Persona {
                 fechaNacimiento);
 
         this.sueldoBase = sueldoBase;
-        this.horasExtra = horasExtra;
         this.tipoIRPF = tipoIRPF;
         this.cuentaIBAN = cuentaIBAN;
-        this.tmAsignaturas = tmAsignaturas;
     }
 
     @Override
@@ -39,13 +36,46 @@ public class Profesor extends Persona {
         Scanner sc = new Scanner(System.in);
         System.out.println("PROFESOR");
         super.pideDatos();
-        System.out.print("Sueldo Base: ");
-        sueldoBase = sc.nextDouble();
-        System.out.print("Tipo IRPF: ");
-        tipoIRPF = sc.nextDouble();
-        sc.nextLine();
-        
+
         boolean correcto = false;
+        do {
+            try {
+                System.out.print("Sueldo base: ");
+                String sueldoBase_s = sc.nextLine();
+                sueldoBase_s = sueldoBase_s.replace(',', '.');
+                sueldoBase = Double.parseDouble(sueldoBase_s);
+                correcto = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Formato de número incorrecto");
+                correcto = false;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                correcto = false;
+            }
+        } while (!correcto);
+
+        do {
+            try {
+                System.out.print("Tipo de IRPF: ");
+                String tipoIRPF_s = sc.nextLine();
+                tipoIRPF_s = tipoIRPF_s.replace(',', '.');
+
+                tipoIRPF = Double.parseDouble(tipoIRPF_s);
+                correcto = true;
+                if (tipoIRPF < 0 || tipoIRPF > 100) {
+                    throw new Exception("El tipo de IRPF tiene que estar entre 0 y 100");
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("Formato de número incorrecto");
+                correcto = false;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                correcto = false;
+            }
+        } while (!correcto);
+
+        correcto = false;
         do {
             try {
                 System.out.print("Cuenta IBAN: ");
@@ -72,6 +102,7 @@ public class Profesor extends Persona {
     public String toString() {
         StringBuilder sb = new StringBuilder(" -- PROFESOR --");
         sb.append(super.toString());
+
         sb.append("\nSueldo base: ");
         sb.append(sueldoBase);
         sb.append("\nTipo IRPF: ");
@@ -136,7 +167,12 @@ public class Profesor extends Persona {
 
     public void imprimeAsignaturas() {
 
-        System.out.println(tmAsignaturas.values());
+        for (String asignatura : tmAsignaturas.keySet()) {
+
+            System.out.println(" (" + asignatura + ") " + 
+                    tmAsignaturas.get(asignatura));
+
+        }
 
         //Imprime las asignaturas impartidas por el profesor
     }

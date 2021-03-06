@@ -32,7 +32,7 @@ public class TablaCursos {
         tmASIGNA.put("1WENTORNOS", "Entornos de Desarrollo");
         tmASIGNA.put("1WSISOPE", "Sistemas Operativos");
         tmASIGNA.put("1WFOL", "Formación y Orientación Laboral");
-        tmASIGNA.put("1WINGLES", "Inlés");
+        tmASIGNA.put("1WINGLES", "Inglés");
         tmASIGNA.put("1SPROGRAM", "Programación");
         tmASIGNA.put("1SLENGMAR", "Lenguajes de Marcas");
         tmASIGNA.put("1SENTORNOS", "Entornos de Desarrollo");

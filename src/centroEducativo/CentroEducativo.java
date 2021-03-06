@@ -1,14 +1,7 @@
 package centroEducativo;
 
-/* 
-Tareas pendientes:
- -Clase alumno
- -Aviso en las opciones del treemap vacio donde se requiera
- -Mirar los filtros de la anterior práctica
- -Mostrar correctamente el listado de asignaturas
- -Revisar el mantenimiento de asignaturas del Profesor
-
-
+/**
+ * @author Damian Martin Delgado
  */
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -255,6 +248,7 @@ public class CentroEducativo {
 
                                                     lista.remove(ape + " " + nom);
                                                     correcto = true;
+                                                    System.out.println("Alumno eliminado");
                                                 }
 
                                             } catch (Exception e) {
@@ -299,31 +293,53 @@ public class CentroEducativo {
                                 break;
 
                             case 4: //INTRODUCIR NOTAS DE UNA ASIGNATURA Y EVALUCACIÓN A TODOS LOS MATRICULADOS
+                                correcto = false;
+                                do {
+                                    do {
+                                        try {
 
-                                System.out.print("Seleccione la asignatura deseada: ");
-                                String asignatura = sc.nextLine();
+                                            System.out.print("Seleccione la asignatura deseada: ");
+                                            String asignatura = sc.nextLine();
 
-                                System.out.print("Seleccione la evaluación: ");
-                                int evaluacion = sc.nextInt();
-                                sc.nextLine();
+                                            if (tmASIGNA.containsKey(asignatura) == false) {
+                                                throw new Exception("La asignatura no existe");
 
-                                System.out.println("Introduzca las notas: ");
+                                            }
 
-                                for (Persona valor : lista.values()) {
+                                            System.out.print("Seleccione la evaluación ");
+                                            int evaluacion = sc.nextInt();
+                                            sc.nextLine();
+                                            System.out.println("Evaluación seleccionada: "
+                                                    + nombreEvalua[evaluacion - 1]);
 
-                                    if (valor instanceof Alumno
-                                            && ((Alumno) valor).getTmAsignaturasAlumno().containsKey(asignatura)) {
+                                            System.out.println("Introduzca las notas: ");
 
-                                        System.out.print(valor.getApellidos() + ", "
-                                                + valor.getNombre() + ": ");
-                                        int nota = sc.nextInt();
-                                        sc.nextLine();
+                                            for (Persona valor : lista.values()) {
 
-                                        ((Alumno) valor).setEvaluacion(asignatura, evaluacion, nota);
+                                                if (valor instanceof Alumno
+                                                        && ((Alumno) valor).getTmAsignaturasAlumno().containsKey(asignatura)) {
 
-                                    }
+                                                    System.out.print(valor.getApellidos() + ", "
+                                                            + valor.getNombre() + ": ");
+                                                    int nota = sc.nextInt();
+                                                    sc.nextLine();
 
-                                }
+                                                    ((Alumno) valor).setEvaluacion(asignatura, evaluacion, nota);
+
+                                                }
+
+                                            }
+                                            correcto = true;
+
+                                        } catch (Exception e) {
+                                            System.out.println(e.getMessage());
+                                            correcto = false;
+                                        }
+                                    } while (!correcto);
+
+                                    System.out.print("¿Desea evaluar otra asignatura? S=Sí Otro = No ");
+                                    repetir = sc.nextLine();
+                                } while (repetir.equalsIgnoreCase("s") == true);
 
                                 break;
 
@@ -348,7 +364,7 @@ public class CentroEducativo {
                             case 6: //LISTADO DE LOS ALUMNOS MATRICULADOS EN UNA ASIGNATURA
 
                                 System.out.print("Seleccione una asignatura: ");
-                                asignatura = sc.nextLine();
+                                String asignatura = sc.nextLine();
 
                                 for (Persona valor : lista.values()) {
 
@@ -362,41 +378,57 @@ public class CentroEducativo {
                                     }
                                 }
 
-                                break; //LISTADO DE BOLETINES DE NOTAS DE UNA EVALUACIÓN Y CURSO
+                                break;
 
-                            case 7:
+                            case 7: //LISTADO DE BOLETINES DE NOTAS DE UNA EVALUACIÓN Y CURSO
                                 do {
-                                    correcto = false;
-                                    try {
-                                        System.out.print("Seleccione evaluación: ");
-                                        evaluacion = sc.nextInt();
-                                        sc.nextLine();
-                                        System.out.print("Seleccione curso: ");
-                                        cursoAlumno = sc.nextLine();
-                                        if (tmCC.containsKey(cursoAlumno) == false) {
+                                    do {
+                                        correcto = false;
+                                        try {
+                                            System.out.print("Seleccione evaluación: (entre 1 y "
+                                                    + notas.notas.length + "): ");
+                                            int evaluacion = sc.nextInt();
+                                            sc.nextLine();
 
-                                            throw new Exception("La asignatura no existe");
+                                            if (evaluacion < 0 || evaluacion > notas.notas.length) {
+                                                throw new Exception("La evaluación debe estar entre 1 y "
+                                                        + notas.notas.length + ".");
+                                            }
 
-                                        }
+                                            System.out.println("Evaluación seleccionada: "
+                                                    + nombreEvalua[evaluacion - 1]);
 
-                                        for (Persona valor : lista.values()) {
+                                            System.out.print("Seleccione curso: ");
+                                            cursoAlumno = sc.nextLine();
+                                            if (tmCC.containsKey(cursoAlumno) == false) {
 
-                                            if (valor instanceof Alumno) {
+                                                throw new Exception("El curso introducido no existe");
 
-                                                if (((Alumno) valor).getCurso().equals(cursoAlumno)) {
+                                            }
 
-                                                    System.out.print(((Alumno) valor).boletinNotas(evaluacion));
+                                            for (Persona valor : lista.values()) {
 
+                                                if (valor instanceof Alumno) {
+
+                                                    if (((Alumno) valor).getCurso().equals(cursoAlumno)) {
+
+                                                        System.out.print(((Alumno) valor).boletinNotas(evaluacion));
+
+                                                    }
                                                 }
                                             }
-                                        }
-                                        correcto = true;
+                                            correcto = true;
 
-                                    } catch (Exception e) {
-                                        System.out.println(e.getMessage());
-                                        correcto = false;
-                                    }
-                                } while (!correcto);
+                                        } catch (Exception e) {
+                                            System.out.println(e.getMessage());
+                                            correcto = false;
+                                        }
+                                    } while (!correcto);
+
+                                    System.out.print("¿Desea ver el boletín de otra evaluación y/o curso? S=Sí Otro=No: ");
+                                    repetir = sc.nextLine();
+
+                                } while (repetir.equalsIgnoreCase("s"));
 
                                 break;
                             case 0: //VUELTA AL MENÚ PRINCIPAL
@@ -467,6 +499,7 @@ public class CentroEducativo {
 
                                                     lista.remove(ape + " " + nom);
                                                     correcto = true;
+                                                    System.out.println("Profesor eliminado");
                                                 }
 
                                             } catch (Exception e) {
@@ -585,42 +618,66 @@ public class CentroEducativo {
                                 break;
 
                             case 8: //MANTENIMIENTO DE ASIGNATURAS IMPARTIDAS POR CADA PROFESOR
+                                do {
+                                    correcto = false;
 
-                                System.out.println("Mantenimiento de asignaturas");
-                                System.out.println("Seleccione un profesor ");
-                                System.out.print("Nombre profesor: ");
-                                String nom = sc.nextLine();
-                                System.out.print("Apellidos profesor: ");
-                                String ape = sc.nextLine();
-                                System.out.println(lista.get(ape + " " + nom).toString());
+                                    try {
+                                        System.out.println("Mantenimiento de asignaturas");
+                                        System.out.println("Seleccione un profesor ");
+                                        System.out.print("Nombre profesor: ");
+                                        String nom = sc.nextLine();
+                                        System.out.print("Apellidos profesor: ");
+                                        String ape = sc.nextLine();
 
-                                System.out.print("Mantenimiento de asignaturas: "
-                                        + "\nSeleccione una opción "
-                                        + "\n1. Añadir asignaturas"
-                                        + "\n2. Quitar asignaturas"
-                                        + "\n0. Salir "
-                                        + "\n Opción seleccionada: ");
-                                opcion = sc.nextInt();
-                                sc.nextLine();
+                                        if (lista.containsKey(ape + " " + nom) == false) {
+                                            throw new Exception("El profesor introducido no existe");
+                                        }
 
-                                switch (opcion) {
-                                    case 1:
-                                        ((Profesor) lista.get(ape + " " + nom)).asignaturasProfesor(tmASIGNA);
+                                        if (lista.get(ape + " " + nom) instanceof Alumno) {
+                                            throw new Exception("Has seleccionado un alumno");
+                                        }
 
-                                        break;
-                                    case 2:
+                                        System.out.println(lista.get(ape + " " + nom).toString());
 
-                                        System.out.print("¿Qué asignatura desea eliminar?: ");
-                                        String asignatura = sc.nextLine();
+                                        System.out.print("Mantenimiento de asignaturas: "
+                                                + "\nSeleccione una opción "
+                                                + "\n1. Añadir asignaturas"
+                                                + "\n2. Quitar asignaturas"
+                                                + "\n0. Salir "
+                                                + "\n Opción seleccionada: ");
+                                        opcion = sc.nextInt();
+                                        sc.nextLine();
+                                        correcto = true;
 
-                                        ((Profesor) lista.get(ape + " " + nom)).eliminaAsignatura(asignatura);
+                                        switch (opcion) {
+                                            case 1:
+                                                do {
+                                                    ((Profesor) lista.get(ape + " " + nom)).asignaturasProfesor(tmASIGNA);
+                                                    System.out.print("¿Desea agregar más asignaturas? S=Sí Otro=No: ");
+                                                    repetir = sc.nextLine();
+                                                } while (repetir.equalsIgnoreCase("s"));
+                                                break;
+                                            case 2:
+                                                do {
+                                                    System.out.print("¿Qué asignatura desea eliminar?: ");
+                                                    String asignatura = sc.nextLine();
 
-                                        break;
+                                                    ((Profesor) lista.get(ape + " " + nom)).eliminaAsignatura(asignatura);
+                                                    System.out.print("¿Desea eliminar más asignaturas? S=Sí Otro=No: ");
+                                                    repetir = sc.nextLine();
+                                                } while (repetir.equalsIgnoreCase("s"));
 
-                                    case 0:
-                                        break;
+                                                break;
 
-                                }
+                                            case 0:
+                                                break;
+
+                                        }
+
+                                    } catch (Exception e) {
+                                        System.out.println(e.getMessage());
+                                    }
+                                } while (!correcto);
 
                                 break;
                             case 0:
@@ -686,193 +743,5 @@ public class CentroEducativo {
 
         } while (!salida);
 
-        /*do {
-
-            System.out.println("\n -- SELECCIONE UNA OPCIÓN: -- ");
-            System.out.println("1. ALTA DE UN PROFESOR");
-            System.out.println("2. BAJA DE UN PROFESOR");
-            System.out.println("3. CONSULTA DE DATOS PERSONALES DE UN PROFESOR");
-            System.out.println("4. INTRODUCIR HORAS EXTRAORDINARIAS DE UN MES");
-            System.out.println("5. LISTADO DE PROFESORES. DATOS PERSONALES");
-            System.out.println("6. LISTADO DE PROFESORES. CLASES QUE IMPARTEN");
-            System.out.println("7. LISTADO DE NÓMINAS DE UN MES");
-            System.out.println("8. MANTENIMIENTO DE ASIGNATURAS IMPARTIDAS POR CADA PROFESOR");
-            System.out.println("0. SALIR DEL PROGRAMA");
-            System.out.print("\nOPCIÓN SELECCINADA: ");
-            opcion = sc.nextInt();
-            sc.nextLine();
-
-            switch (opcion) {
-
-                case 1:
-                    do {
-                        Persona p = new Profesor();
-                        p.pideDatos();
-                        if (lista.containsKey(p.getApellidos() + " " + p.getNombre())) {
-                            System.out.println("Este nombre ya existe, no puedo grabarlo");
-                        } else {
-                            lista.put(p.getApellidos() + " " + p.getNombre(), p);
-                        }
-
-                        System.out.print("¿Desea continuar? s=Sí: ");
-                        repetir = sc.nextLine();
-                    } while (repetir.equalsIgnoreCase("s") == true);
-
-                    break;
-
-                case 2: //Baja de profesor
-                    if (lista.isEmpty()) {
-                        System.out.println("La lista está vacía");
-                        break;
-                    } else {
-
-                        do {
-
-                            do {
-
-                                try {
-                                    System.out.print("Nombre profesor: ");
-                                    String nom = sc.nextLine();
-                                    System.out.print("Apellidos profesor: ");
-                                    String ape = sc.nextLine();
-                                    if (lista.containsKey(ape + " " + nom) == false) {
-
-                                    correcto = true;
-                                    throw new Exception("El profesor introducido no existe");
-
-                                } else {
-
-                                    lista.remove(ape + " " + nom);
-                                    correcto = true;
-                                }
-
-                                } catch (Exception e) {
-                                    System.out.println(e.getMessage());
-                                    correcto = false;
-                                }
-                            } while (!correcto);
-
-                            System.out.print("¿Desea continuar? s=Sí: ");
-                            repetir = sc.nextLine();
-                        } while (repetir.equalsIgnoreCase("s") == true);
-
-                        break;
-
-                    }
-
-                case 3:
-                    do {
-                        System.out.print("Nombre profesor: ");
-                        String nom = sc.nextLine();
-                        System.out.print("Apellidos profesor: ");
-                        String ape = sc.nextLine();
-                        System.out.println(lista.get(ape + " " + nom).toString());
-
-                        System.out.print("¿Desea continuar? s=Sí: ");
-                        repetir = sc.nextLine();
-                    } while (repetir.equalsIgnoreCase("s") == true);
-                    break;
-
-                case 4: //Pedir las horas extra
-
-                    int mes;
-                    int horas = 0;
-                    do {
-                        System.out.print("Introducir mes (1=Enero, 12=Diciembre): ");
-                        mes = sc.nextInt();
-                        sc.nextLine();
-
-                        for (Persona valor : lista.values()) {
-                            System.out.println(valor.getNombre());
-                            System.out.println(valor.getApellidos());
-                            System.out.print("Horas extra: ");
-                            horas = sc.nextInt();
-                            sc.nextLine();
-                            ((Profesor) valor).setHorasExtra(horas, mes - 1);
-
-                        }
-
-                        System.out.print("¿Desea continuar? s=Sí: ");
-                        repetir = sc.nextLine();
-
-                    } while (repetir.equalsIgnoreCase("s") == true);
-                    break;
-
-                case 5: //Listado de profesores
-
-                    for (Persona valor : lista.values()) {
-
-                        System.out.println(valor.toString());
-                    }
-
-                    break;
-
-                case 6:
-                    System.out.println("Listado de asignaturas por profesor ");
-                    for (Persona valor : lista.values()) {
-                        System.out.println(valor.getNombre());
-                        System.out.println(valor.getApellidos());
-
-                        ((Profesor) valor).imprimeAsignaturas();
-
-                        System.out.println("");
-
-                    }
-
-                    break;
-
-                case 7: //LISTADO DE NÓMINAS DE UN MES
-                    System.out.print("Nóminas del mes: ");
-                    mes = sc.nextInt();
-                    sc.nextLine();
-
-                    for (Persona valor : lista.values()) {
-
-                        System.out.println(((Profesor) valor).imprimirNominas(mes - 1));
-
-                    }
-
-                    break;
-
-                case 8: //Añadir asignaturas
-                    System.out.println("Mantenimiento de asignaturas");
-                    System.out.println("Seleccione un profesor: ");
-                    System.out.print("Nombre profesor: ");
-                    String nom = sc.nextLine();
-                    System.out.print("Apellidos profesor: ");
-                    String ape = sc.nextLine();
-                    System.out.println(lista.get(ape + " " + nom).toString());
-
-                    System.out.print("Mantenimiento de asignaturas: "
-                            + "\nSeleccione una opción "
-                            + "\n1. Añadir asignaturas"
-                            + "\n2. Quitar asignaturas"
-                            + "\n0. Salir "
-                            + "\n Opción seleccionada:");
-                    opcion = sc.nextInt();
-                    sc.nextLine();
-
-                    switch (opcion) {
-                        case 1:
-                            ((Profesor) lista.get(ape + " " + nom)).asignaturasProfesor(tmASIGNA);
-
-                            break;
-                        case 2:
-
-                            System.out.print("¿Qué asignatura desea eliminar?: ");
-                            String asignatura = sc.nextLine();
-
-                            ((Profesor) lista.get(ape + " " + nom)).eliminaAsignatura(asignatura);
-
-                            break;
-
-                        case 0:
-                            break;
-
-                    }
-
-                    break;
-            }
-        } while (opcion != 0); */
     }
 }

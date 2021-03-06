@@ -48,10 +48,9 @@ public class Persona {
                 dni = sc.nextLine();
                 verificaDNI(dni);
                 correcto = true;
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Caracteres incorrectos");
-            }
-             catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
                 correcto = false;
             }
@@ -63,7 +62,7 @@ public class Persona {
                 fechaNacimiento = sc.nextLine();
                 verificaFecha(fechaNacimiento);
                 correcto = true;
-            }catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
                 correcto = false;
             }
@@ -74,7 +73,7 @@ public class Persona {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\nNombre:: ");
+        sb.append("\nNombre: ");
         sb.append(nombre);
         sb.append("\nApellidos: ");
         sb.append(apellidos);
@@ -92,42 +91,20 @@ public class Persona {
 
     }
 
-    /*public static void verificaDNI(String dni) throws Exception {
+    public static void verificaDNI(String dni) throws Exception {
         String letrasDni = "TRWAGMYFPDXBNJZSQVHLCKE";
         String letraDNI = dni.substring(dni.length() - 1);
         String numeroDNI = dni.substring(0, dni.length() - 1);
-        try {
-            int numero = Integer.parseInt(numeroDNI);
-            int resto = numero % 23;
-            String letraObtenida = letrasDni.substring(resto, resto + 1);
-            String letraMinuscula = letraObtenida.toLowerCase();
-            if (letraDNI.compareTo(letraObtenida) == 0
-                    || letraDNI.compareTo(letraMinuscula) == 0) {
-            } else {
-                throw new Exception("Letra incorrecta");
-            }
 
-        } catch (NumberFormatException e) {
-            throw new Exception("Caracteres incorrectos");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        int numero = Integer.parseInt(numeroDNI);
+        int resto = numero % 23;
+        String letraObtenida = letrasDni.substring(resto, resto + 1);
+        String letraMinuscula = letraObtenida.toLowerCase();
+        if (letraDNI.compareTo(letraObtenida) == 0
+                || letraDNI.compareTo(letraMinuscula) == 0) {
+        } else {
+            throw new Exception("Letra incorrecta");
         }
-    }*/
-    
-        public static void verificaDNI(String dni) throws Exception {
-        String letrasDni = "TRWAGMYFPDXBNJZSQVHLCKE";
-        String letraDNI = dni.substring(dni.length() - 1);
-        String numeroDNI = dni.substring(0, dni.length() - 1);
-       
-            int numero = Integer.parseInt(numeroDNI);
-            int resto = numero % 23;
-            String letraObtenida = letrasDni.substring(resto, resto + 1);
-            String letraMinuscula = letraObtenida.toLowerCase();
-            if (letraDNI.compareTo(letraObtenida) == 0
-                    || letraDNI.compareTo(letraMinuscula) == 0) {
-            } else {
-                throw new Exception("Letra incorrecta");
-            }
     }
 
     public static void verificaFecha(String fecha) throws Exception {

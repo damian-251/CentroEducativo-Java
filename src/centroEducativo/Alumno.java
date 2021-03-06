@@ -44,7 +44,14 @@ public class Alumno extends Persona {
                 if (comprobarAsignatura(asignatura) == false) {
                     System.out.println("La asignatura no es correcta");
                 }
-            } while (comprobarAsignatura(asignatura) == false);
+
+                if (asignatura.charAt(1) != curso.charAt(1)) {
+                    System.out.println("La asignatura debe de pertenecer a "
+                            + CentroEducativo.tmCC.get(curso) + ".");
+                }
+
+            } while (comprobarAsignatura(asignatura) == false
+                    || asignatura.charAt(1) != curso.charAt(1));
             Notas n = new Notas();
             tmAsignaturasAlumno.put(asignatura, n);
             System.out.print("¿Desea añadir más asignaturas? S=Sí Otro = No: ");
@@ -73,10 +80,12 @@ public class Alumno extends Persona {
         for (String valor : tmAsignaturasAlumno.keySet()) {
 
             sb.append("\n");
+            sb.append(" (");
             sb.append(valor);
+            sb.append(") ");
+            sb.append(CentroEducativo.tmASIGNA.get(valor));
             sb.append(": ");
             sb.append(tmAsignaturasAlumno.get(valor).getNotas(evaluacion));
-
         }
         sb.append("\n");
         return sb.toString();
@@ -113,7 +122,5 @@ public class Alumno extends Persona {
     public void setTmAsignaturasAlumno(TreeMap<String, Notas> tmAsignaturasAlumno) {
         this.tmAsignaturasAlumno = tmAsignaturasAlumno;
     }
-    
-    
 
 }
