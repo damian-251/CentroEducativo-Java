@@ -144,7 +144,7 @@ public class CentroEducativo {
         alum.setTmAsignaturasAlumno(tmAsignaturasAlumno);
         lista.put(key, alum);
 
-        alum = new Alumno("1W", "Jose", "Galiano Montesinos", "C Novelda, 22", "02565", "Elche",
+        alum = new Alumno("1W", "Jose", "Galiano", "C Novelda, 22", "02565", "Elche",
                 "21309422Z", "06/03/1994");
         tmAsignaturasAlumno = new TreeMap<String, Notas>();
         key = alum.getApellidos() + " " + alum.getNombre();//la clave para el TreeMaps
@@ -158,7 +158,7 @@ public class CentroEducativo {
         lista.put(key, alum);
 
         alum = new Alumno("1E", "Paula", "Gonzalez", "C Sainz Baranda, 22", "02565", "Elche",
-                "21309422Z", "06/03/1994");
+                "21309422Z", "06/03/1990");
         tmAsignaturasAlumno = new TreeMap<String, Notas>();
         key = alum.getApellidos() + " " + alum.getNombre();//la clave para el TreeMaps
         notas = new Notas();
@@ -342,7 +342,8 @@ public class CentroEducativo {
 
                                             }
 
-                                            System.out.print("Seleccione la evaluación ");
+                                            System.out.print("Seleccione la evaluación (entre 1 y "
+                                                    + notas.notas.length + "): ");
                                             int evaluacion = sc.nextInt();
                                             sc.nextLine();
                                             System.out.println("Evaluación seleccionada: "
@@ -443,13 +444,11 @@ public class CentroEducativo {
 
                                             for (Persona valor : lista.values()) {
 
-                                                if (valor instanceof Alumno) {
-
-                                                    if (((Alumno) valor).getCurso().equals(cursoAlumno)) {
-
-                                                        System.out.print(((Alumno) valor).boletinNotas(evaluacion));
-
-                                                    }
+                                                if (valor instanceof Alumno && 
+                                                        ((Alumno) valor).getCurso().equals(cursoAlumno)) {
+                                                    
+                                                    System.out.print(((Alumno) valor).boletinNotas(evaluacion));
+                                                    
                                                 }
                                             }
                                             correcto = true;
