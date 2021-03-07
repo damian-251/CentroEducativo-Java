@@ -47,7 +47,6 @@ public class CentroEducativo {
         System.out.print("Curso: ");
         curso = sc.nextLine();
         CentroEducativo.setCurso(curso);
-        System.out.println();
 
         //--------------------------------------------------------------------------------------------------------------------------------
         // D A T O S    I N I C I A L E S   P A R A   P R U E B A S///////////////////////////////////
@@ -86,7 +85,6 @@ public class CentroEducativo {
         alum = new Alumno("1S", "Antonio", "Serrano Gil", "Hospital, 24", "03203", "Elche",
                 "21309422Z", "03/06/2001");
         tmAsignaturasAlumno = new TreeMap<String, Notas>();
-        notas = new Notas();
         tmAsignaturasAlumno.put("1SPROGRAM", new Notas());
         tmAsignaturasAlumno.put("1SENTORNOS", new Notas());
         tmAsignaturasAlumno.put("1SLENGMAR", new Notas());
@@ -99,7 +97,6 @@ public class CentroEducativo {
         alum = new Alumno("1S", "Antonio", "Grande Ruizm", "Hospital, 22", "03203", "Elche",
                 "21309422Z", "03/05/1999");
         tmAsignaturasAlumno = new TreeMap<String, Notas>();
-        notas = new Notas();
         tmAsignaturasAlumno.put("1SPROGRAM", new Notas());
         tmAsignaturasAlumno.put("1SENTORNOS", new Notas());
         tmAsignaturasAlumno.put("1SLENGMAR", new Notas());
@@ -109,10 +106,10 @@ public class CentroEducativo {
         key = alum.getApellidos() + ", " + alum.getNombre();//la clave para el TreeMaps
         lista.put(key, alum);
 
-        alum = new Alumno("2S", "Ana", "Ruiz Ruiz", "Plza Mayor, 2", "03203", "Elche",
+        alum = new Alumno("1S", "Ana", "Ruiz Ruiz", "Plza Mayor, 2", "03203", "Elche",
                 "21309422Z", "03/05/1999");
         tmAsignaturasAlumno = new TreeMap<String, Notas>();
-        notas = new Notas();
+        tmAsignaturasAlumno = new TreeMap<String, Notas>();
         tmAsignaturasAlumno.put("1SPROGRAM", new Notas());
         tmAsignaturasAlumno.put("2SENTORCLI", new Notas());
         tmAsignaturasAlumno.put("2SENTORSER", new Notas());
@@ -125,7 +122,7 @@ public class CentroEducativo {
         alum = new Alumno("1W", "Luis", "Tormo Pascual", "Navas, 22", "03203", "Elche",
                 "21309422Z", "13/10/2000");
         tmAsignaturasAlumno = new TreeMap<String, Notas>();
-        notas = new Notas();
+        tmAsignaturasAlumno = new TreeMap<String, Notas>();
         tmAsignaturasAlumno.put("1WPROGRAM", new Notas());
         tmAsignaturasAlumno.put("1WENTORNOS", new Notas());
         tmAsignaturasAlumno.put("1WLENGMAR", new Notas());
@@ -137,6 +134,19 @@ public class CentroEducativo {
 
         alum = new Alumno("1W", "Luisa", "Miralles Ruiz", "Romerales, 22", "03203", "Elche",
                 "21309422Z", "06/03/2001");
+        tmAsignaturasAlumno = new TreeMap<String, Notas>();
+        key = alum.getApellidos() + " " + alum.getNombre();//la clave para el TreeMaps
+        tmAsignaturasAlumno.put("1WPROGRAM", new Notas());
+        tmAsignaturasAlumno.put("1WENTORNOS", new Notas());
+        tmAsignaturasAlumno.put("1WLENGMAR", new Notas());
+        tmAsignaturasAlumno.put("1WFOL", new Notas());
+        tmAsignaturasAlumno.put("1WINGLES", new Notas());
+        alum.setTmAsignaturasAlumno(tmAsignaturasAlumno);
+        lista.put(key, alum);
+
+        alum = new Alumno("1W", "Jose", "Galiano Montesinos", "C Novelda, 22", "02565", "Elche",
+                "21309422Z", "06/03/1994");
+        tmAsignaturasAlumno = new TreeMap<String, Notas>();
         key = alum.getApellidos() + " " + alum.getNombre();//la clave para el TreeMaps
         notas = new Notas();
         tmAsignaturasAlumno.put("1WPROGRAM", new Notas());
@@ -146,7 +156,33 @@ public class CentroEducativo {
         tmAsignaturasAlumno.put("1WINGLES", new Notas());
         alum.setTmAsignaturasAlumno(tmAsignaturasAlumno);
         lista.put(key, alum);
+
+        alum = new Alumno("1E", "Paula", "Gonzalez", "C Sainz Baranda, 22", "02565", "Elche",
+                "21309422Z", "06/03/1994");
         tmAsignaturasAlumno = new TreeMap<String, Notas>();
+        key = alum.getApellidos() + " " + alum.getNombre();//la clave para el TreeMaps
+        notas = new Notas();
+        tmAsignaturasAlumno.put("1EREDES", new Notas());
+        tmAsignaturasAlumno.put("1EOFIMA", new Notas());
+        tmAsignaturasAlumno.put("1ESISOP", new Notas());
+        tmAsignaturasAlumno.put("1EFOL", new Notas());
+        tmAsignaturasAlumno.put("1EINGLES", new Notas());
+        alum.setTmAsignaturasAlumno(tmAsignaturasAlumno);
+        lista.put(key, alum);
+
+        alum = new Alumno("1E", "Cristina", "Martinez", "carrer desconegut, 22", "02565", "Elche",
+                "21309422Z", "06/03/1994");
+        tmAsignaturasAlumno = new TreeMap<String, Notas>();
+        key = alum.getApellidos() + " " + alum.getNombre();//la clave para el TreeMaps
+        notas = new Notas();
+        tmAsignaturasAlumno.put("1EREDES", new Notas());
+        tmAsignaturasAlumno.put("1EOFIMA", new Notas());
+        tmAsignaturasAlumno.put("1ESISOP", new Notas());
+        tmAsignaturasAlumno.put("1EFOL", new Notas());
+        tmAsignaturasAlumno.put("1EINGLES", new Notas());
+        alum.setTmAsignaturasAlumno(tmAsignaturasAlumno);
+        lista.put(key, alum);
+
         String nombreEvalua[] = {"Primera Evaluacion", "Segunda Evaluacion", "Tercera evaluacion",
             "Evaluacion ordinaria", "Evaluacion extraordinaria"};
 
@@ -167,7 +203,7 @@ public class CentroEducativo {
                 System.out.println();
                 correcto = true;
             } catch (Exception e) {
-                System.out.println("error en caracteres Importe Horas Extra");
+                System.out.println("Error en caracteres Importe Horas Extra");
                 sc.nextLine();
             }
         } while (!correcto);
@@ -322,9 +358,10 @@ public class CentroEducativo {
                                                     System.out.print(valor.getApellidos() + ", "
                                                             + valor.getNombre() + ": ");
                                                     int nota = sc.nextInt();
-                                                    sc.nextLine();
 
                                                     ((Alumno) valor).setEvaluacion(asignatura, evaluacion, nota);
+                                                    //System.out.println(tmAsignaturasAlumno.get(asignatura).getNotas(evaluacion));
+                                                    sc.nextLine();
 
                                                 }
 
@@ -368,14 +405,12 @@ public class CentroEducativo {
 
                                 for (Persona valor : lista.values()) {
 
-                                    if (valor instanceof Alumno) {
+                                    if (valor instanceof Alumno
+                                            && ((Alumno) valor).getTmAsignaturasAlumno().containsKey(asignatura)) {
 
-                                        if (((Alumno) valor).getTmAsignaturasAlumno().containsKey(asignatura)) {
-
-                                            System.out.println(valor.toString());
-                                        }
-
+                                        System.out.println(valor.toString());
                                     }
+
                                 }
 
                                 break;
@@ -469,7 +504,7 @@ public class CentroEducativo {
                                         lista.put(p.getApellidos() + " " + p.getNombre(), p);
                                     }
 
-                                    System.out.print("¿Desea continuar? s=Sí: ");
+                                    System.out.print("¿Desea continuar dar de alta otro profesor? s=Sí Otro=No: ");
                                     repetir = sc.nextLine();
                                 } while (repetir.equalsIgnoreCase("s") == true);
                                 break;
@@ -509,7 +544,7 @@ public class CentroEducativo {
                                             }
                                         } while (!correcto);
 
-                                        System.out.print("¿Desea continuar? s=Sí: ");
+                                        System.out.print("¿Desea dar de baja otro profesor? s=Sí otro=No: ");
                                         repetir = sc.nextLine();
 
                                     } while (repetir.equalsIgnoreCase("s") == true);
