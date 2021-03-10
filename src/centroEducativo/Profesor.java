@@ -6,8 +6,6 @@ import java.util.TreeMap;
 
 public class Profesor extends Persona {
 
-    private static String curso;
-
     private double sueldoBase;
     private int[] horasExtra = new int[12];
     private double tipoIRPF;
@@ -200,13 +198,7 @@ public class Profesor extends Persona {
     }
 
     // GETTERS AND SETTERS
-    public static String getCurso() {
-        return curso;
-    }
 
-    public static void setCurso(String curso) {
-        Profesor.curso = curso;
-    }
 
     public double getSueldoBase() {
         return sueldoBase;
