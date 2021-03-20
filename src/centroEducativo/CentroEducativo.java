@@ -106,7 +106,7 @@ public class CentroEducativo {
         key = alum.getApellidos() + ", " + alum.getNombre();//la clave para el TreeMaps
         lista.put(key, alum);
 
-        alum = new Alumno("1S", "Ana", "Ruiz Ruiz", "Plza Mayor, 2", "03203", "Elche",
+        alum = new Alumno("2S", "Ana", "Ruiz Ruiz", "Plza Mayor, 2", "03203", "Elche",
                 "21309422Z", "03/05/1999");
         tmAsignaturasAlumno = new TreeMap<String, Notas>();
         tmAsignaturasAlumno = new TreeMap<String, Notas>();
@@ -444,12 +444,20 @@ public class CentroEducativo {
 
                                             for (Persona valor : lista.values()) {
 
-                                                if (valor instanceof Alumno && 
-                                                        ((Alumno) valor).getCurso().equals(cursoAlumno)) {
-                                                    
+                                                if (valor instanceof Alumno
+                                                        && ((Alumno) valor).getCurso().equals(cursoAlumno)) {
+
                                                     System.out.print(((Alumno) valor).boletinNotas(evaluacion));
-                                                    
+
                                                 }
+                                            }
+
+                                            System.out.println("Con el otro método, no filtramos el curso ");
+                                            for (Persona objeto : lista.values()) {
+                                                if (objeto instanceof Alumno) {
+                                                System.out.println(((Alumno) objeto).boletinNotasCurso(cursoAlumno, evaluacion));
+                                                }
+
                                             }
                                             correcto = true;
 

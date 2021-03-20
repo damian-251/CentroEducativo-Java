@@ -90,6 +90,28 @@ public class Alumno extends Persona {
         sb.append("\n");
         return sb.toString();
     }
+    
+            //Modificado para que solamente muestre las asignaturas de un curso completo
+    //(hecho en casa)
+        public String boletinNotasCurso(String curso, int evaluacion) {
+        String[] nombreEvaluacion = {"Primera Evaluación", "Segunda Evaluación",
+            "Tercera Evaluación", "Evaluación ordinaria", "Evaluación extraordinaria"};
+        String nombreAsignatura = "";
+        StringBuilder sb = new StringBuilder("\nCurso académico: ");
+        sb.append(CentroEducativo.getCurso());
+        sb.append("\nBoletín de notas de: " + nombreEvaluacion[evaluacion]);
+        sb.append("\nNombre del alumno: " + this.getNombre() + ", " + this.getApellidos());
+        //Recorremos todo el TreeMap de tmAsignaturasAlumno y sus notas en esta evalución
+        for (String codAsig : tmAsignaturasAlumno.keySet()) {
+            //if (this.getCurso().equals(curso)) {
+            nombreAsignatura = CentroEducativo.tmASIGNA.get(codAsig);
+            Notas notasAlumno = tmAsignaturasAlumno.get(codAsig);
+            sb.append("\n" + codAsig + " " + nombreAsignatura + ": "
+                    + notasAlumno.getNotas()[evaluacion]);
+            //}
+        }
+        return sb.toString();
+    }
 
     public boolean comprobarCurso() {
         return CentroEducativo.tmCC.containsKey(this.curso);
